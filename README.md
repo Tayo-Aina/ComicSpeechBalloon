@@ -1,4 +1,4 @@
-# Comic Speech Balloon 🎈
+# Comic Speech Balloon 
 
 A Windows desktop app that spawns AI-generated comic speech bubbles near your cursor. 
 
