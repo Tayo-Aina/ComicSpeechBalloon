@@ -1,0 +1,153 @@
+<Window x:Class="ComicSpeechBalloon.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Balloon Settings"
+        Width="420" Height="520"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow"
+        ShowInTaskbar="true"
+        Topmost="true"
+        Closing="OnClosing">
+
+    <Grid Margin="24,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0" Text="Balloon Settings"
+                   FontSize="18" FontWeight="Bold"
+                   Foreground="#111"
+                   Margin="0,0,0,20"/>
+
+        <!-- Spawn Interval -->
+        <TextBlock Grid.Row="1" Text="Balloon Spawn Interval"
+                   FontSize="13" FontWeight="SemiBold"
+                   Margin="0,0,0,6"/>
+        <Grid Grid.Row="2" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Slider x:Name="IntervalSlider" Grid.Column="0"
+                    Minimum="5" Maximum="120"
+                    Value="15" TickFrequency="5"
+                    IsSnapToTickEnabled="True"
+                    SmallChange="5" LargeChange="15"
+                    VerticalAlignment="Center"
+                    ValueChanged="OnIntervalChanged"/>
+            <TextBlock x:Name="IntervalLabel" Grid.Column="1"
+                       Text="15 sec"
+                       Width="60" TextAlignment="Right"
+                       FontSize="13" FontWeight="SemiBold"
+                       Foreground="#1a73e8"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Display Duration -->
+        <TextBlock Grid.Row="3" Text="Display Duration"
+                   FontSize="13" FontWeight="SemiBold"
+                   Margin="0,0,0,6"/>
+        <Grid Grid.Row="4" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Slider x:Name="DurationSlider" Grid.Column="0"
+                    Minimum="2" Maximum="20"
+                    Value="5" TickFrequency="1"
+                    IsSnapToTickEnabled="True"
+                    SmallChange="1" LargeChange="3"
+                    VerticalAlignment="Center"
+                    ValueChanged="OnDurationChanged"/>
+            <TextBlock x:Name="DurationLabel" Grid.Column="1"
+                       Text="5 sec"
+                       Width="60" TextAlignment="Right"
+                       FontSize="13" FontWeight="SemiBold"
+                       Foreground="#1a73e8"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Spacing -->
+        <Separator Grid.Row="5" Margin="0,4,0,12"
+                   Background="#e0e0e0" Height="1"/>
+
+        <!-- AI Toggle -->
+        <Grid Grid.Row="6" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Text="AI Content" FontSize="13" FontWeight="SemiBold"/>
+                <TextBlock Text="DeepSeek-generated contextual balloons"
+                           FontSize="11" Foreground="#888"/>
+            </StackPanel>
+            <CheckBox x:Name="AiToggle" Grid.Column="1"
+                      IsChecked="True"
+                      Checked="OnAiToggled" Unchecked="OnAiToggled"
+                      VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Roast Mode Toggle -->
+        <Grid Grid.Row="7" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Text="Roast Mode" FontSize="13" FontWeight="SemiBold"/>
+                <TextBlock Text="Memory-aware roasts (on) vs simple context (off)"
+                           FontSize="11" Foreground="#888"/>
+            </StackPanel>
+            <CheckBox x:Name="RoastToggle" Grid.Column="1"
+                      IsChecked="True"
+                      Checked="OnRoastToggled" Unchecked="OnRoastToggled"
+                      VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- API Key status -->
+        <Border Grid.Row="8" Margin="0,8,0,14"
+                Background="#f7f7f7" CornerRadius="6"
+                Padding="12,10">
+            <StackPanel>
+                <TextBlock Text="API Key" FontSize="13" FontWeight="SemiBold"
+                           Margin="0,0,0,4"/>
+                <TextBlock x:Name="KeyStatusLabel"
+                           FontSize="12" Foreground="#666"
+                           TextWrapping="Wrap"/>
+                <Button Content="Change API Key..."
+                        Margin="0,8,0,0" Height="28"
+                        FontSize="12" Cursor="Hand"
+                        Click="OnChangeKeyClick"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Bottom buttons -->
+        <StackPanel Grid.Row="10" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,0,0,0">
+            <Button Content="Hide to Tray"
+                    Width="100" Height="32"
+                    FontSize="12" Cursor="Hand"
+                    Margin="0,0,8,0"
+                    Click="OnMinimizeClick"/>
+            <Button Content="Exit App"
+                    Width="100" Height="32"
+                    FontSize="12" Cursor="Hand"
+                    Background="#ff4444" Foreground="White"
+                    BorderThickness="0"
+                    Click="OnExitClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
