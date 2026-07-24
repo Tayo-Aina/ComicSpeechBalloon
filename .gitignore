@@ -1,5 +1,20 @@
+# .NET
 bin/
 obj/
 *.user
 *.suo
+*.cache
+*.vs/
 .vs/
+.DS_Store
+Thumbs.db
+
+# Build outputs
+publish/
+*.exe
+*.dll
+*.pdb
+
+# IDE
+.idea/
+*.sln.DotSettings.user
